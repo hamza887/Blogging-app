@@ -1,6 +1,15 @@
 const express= require('express');
+const bodyParser=require('body-parser')
+const connect=require('./config/db');
+const router=require('./routes/userRoutes')
 require('dotenv').config()
 const app=express();
+
+//connect Mongodb
+
+connect();
+app.use(bodyParser.json());
+app.use('/',router)
 
 app.get('/',(req,res)=>{
     res.send('hello world')
